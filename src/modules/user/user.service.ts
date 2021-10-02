@@ -12,6 +12,24 @@ export class UserService {
     return await this.userCollection.allDocuments();
   };
 
+  getUserContentByAdminById = async (id: string) => {
+    try {
+      const user = await this.userCollection.findById(id);
+      if (!user) {
+        return new HttpException(
+          `User with ${id} does not exist`,
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      return user;
+    } catch (e) {
+      return new HttpException(
+        'Internal error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  };
+
   getUserContentByAdmin = async (login: string) => {
     try {
       const user = await this.userCollection.findOne({ login });

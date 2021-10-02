@@ -8,4 +8,5 @@ export interface ProjectContent {
   trackerLink: string;
   googleCalendarLink: string;
   telegramLink: string;
+  photo: string;
 }
