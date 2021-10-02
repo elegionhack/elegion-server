@@ -17,20 +17,18 @@ export class ProjectsMongoService implements Collection<ProjectContent> {
     return Promise.resolve(undefined);
   }
 
-  findById(id: string): Promise<ProjectContent> | null {
-    return undefined;
-  }
+  findById = async (id: string): Promise<ProjectContent> | null =>
+    await this.findOne({ _id: id });
 
-  findOne(filter: Filter): Promise<ProjectContent> | null {
-    return undefined;
-  }
+  findOne = async (filter: Filter): Promise<ProjectContent> | null =>
+    await this.projectModel.findOne(filter);
 
   save = async (content: ProjectContent): Promise<void> => {
     await new this.projectModel(content).save();
   };
 
-  updateOne(filter: Filter, update: ProjectContent): Promise<void> {
-    return Promise.resolve(undefined);
+  async updateOne(filter: Filter, update: ProjectContent): Promise<void> {
+    await this.projectModel.updateOne(filter, update);
   }
 
   allDocuments = async () => this.projectModel.find();

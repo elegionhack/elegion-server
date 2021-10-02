@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { AddWorkersInProjectDto } from './dto/add-workers-in-project.dto';
 
 @Controller('projects')
 export class ProjectsController {
@@ -14,5 +15,13 @@ export class ProjectsController {
   @Post('create')
   async createProject(@Body() data: CreateProjectDto) {
     await this.projectsService.createProject(data);
+  }
+
+  @Post('add')
+  async addInProject(@Body() data: AddWorkersInProjectDto) {
+    await this.projectsService.addWorkersInProject(
+      data.workers,
+      data.projectId,
+    );
   }
 }

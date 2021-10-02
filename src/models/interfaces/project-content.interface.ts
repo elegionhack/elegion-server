@@ -4,7 +4,7 @@ export interface ProjectContent {
   title: string;
   customer: string;
   description: string;
-  workers: UserContent[];
+  workers: string[];
   trackerLink: string;
   googleCalendarLink: string;
   telegramLink: string;
