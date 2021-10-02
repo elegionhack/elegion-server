@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -31,6 +32,15 @@ export class UserController {
     return await this.userService.getUserContent(
       authData['login'],
       authData['password'],
+    );
+  }
+
+  @Get(':id')
+  async getByAdmin(@Cookies() authData, @Param('id') id) {
+    return await this.userService.getUserContentByAdmin(
+      authData['login'],
+      authData['password'],
+      id,
     );
   }
 }

@@ -18,12 +18,11 @@ export class UserMongoService implements Collection<UserContent> {
     return Promise.resolve(undefined);
   }
 
-  findById(id: string): Promise<UserContent> | null {
-    return undefined;
-  }
+  findById = async (id: string): Promise<UserContent> | null =>
+    await this.findOne({ _id: id });
 
   findOne = async (filter: Filter): Promise<UserContent> | null =>
-    this.userModel.findOne(filter);
+    await this.userModel.findOne(filter);
 
   save = async (content: UserContent): Promise<void> => {
     await new this.userModel(content).save();

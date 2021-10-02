@@ -2,10 +2,36 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserMongoService } from '../mongo-db/user-mongo.service';
 import * as bcrypt from 'bcrypt';
 import { UserContent } from '../../models/interfaces/user-content.interface';
+import { Role } from '../../models/enums/role.enum';
 
 @Injectable()
 export class UserService {
   constructor(private userCollection: UserMongoService) {}
+
+  getUserContentByAdmin = async (login, password, id: string) => {
+    try {
+      const admin = await this.userCollection.findOne({ login });
+      if (
+        !(await bcrypt.compare(password, admin.password)) ||
+        admin.role !== Role.ADMIN
+      ) {
+        return new HttpException('You are not admin', HttpStatus.FORBIDDEN);
+      }
+      const user = await this.userCollection.findById(id);
+      if (!user) {
+        return new HttpException(
+          `User with ${id} does not exist`,
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      return user;
+    } catch (e) {
+      return new HttpException(
+        'Internal error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  };
 
   getUserContent = async (login, password) => {
     try {
