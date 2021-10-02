@@ -25,4 +25,11 @@ birthday: string;
 position: string;
 fullName: string;
 ```
-
+#### Example:
+```json
+{
+    "birthday": "1998-11-02T19:00:00.000Z",
+    "position": "Junior разработчик РАП",
+    "fullName": "Иванова Мария Андреевна"
+}
+```
