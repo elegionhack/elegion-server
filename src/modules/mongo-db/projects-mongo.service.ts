@@ -25,11 +25,13 @@ export class ProjectsMongoService implements Collection<ProjectContent> {
     return undefined;
   }
 
-  save(content: ProjectContent): Promise<void> {
-    return Promise.resolve(undefined);
-  }
+  save = async (content: ProjectContent): Promise<void> => {
+    await new this.projectModel(content).save();
+  };
 
   updateOne(filter: Filter, update: ProjectContent): Promise<void> {
     return Promise.resolve(undefined);
   }
+
+  allDocuments = async () => this.projectModel.find();
 }
