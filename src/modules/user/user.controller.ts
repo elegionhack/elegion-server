@@ -17,6 +17,11 @@ import { Status } from '../../models/enums/status.enum';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @Get('all')
+  async getAll() {
+    return await this.userService.getAll();
+  }
+
   @Post('registration')
   @HttpCode(HttpStatus.CREATED)
   async registration(@Body() data: RegistrationDto) {
@@ -28,19 +33,12 @@ export class UserController {
   }
 
   @Get()
-  async get(@Cookies() authData) {
-    return await this.userService.getUserContent(
-      authData['login'],
-      authData['password'],
-    );
+  async get(login: string, password: string) {
+    return await this.userService.getUserContent(login, password);
   }
 
-  @Get(':id')
-  async getByAdmin(@Cookies() authData, @Param('id') id) {
-    return await this.userService.getUserContentByAdmin(
-      authData['login'],
-      authData['password'],
-      id,
-    );
+  @Get(':login')
+  async getByAdmin(@Param('login') login) {
+    return await this.userService.getUserContentByAdmin(login);
   }
 }

@@ -8,19 +8,16 @@ import { Role } from '../../models/enums/role.enum';
 export class UserService {
   constructor(private userCollection: UserMongoService) {}
 
-  getUserContentByAdmin = async (login, password, id: string) => {
+  getAll = async () => {
+    return await this.userCollection.allDocuments();
+  };
+
+  getUserContentByAdmin = async (login: string) => {
     try {
-      const admin = await this.userCollection.findOne({ login });
-      if (
-        !(await bcrypt.compare(password, admin.password)) ||
-        admin.role !== Role.ADMIN
-      ) {
-        return new HttpException('You are not admin', HttpStatus.FORBIDDEN);
-      }
-      const user = await this.userCollection.findById(id);
+      const user = await this.userCollection.findOne({ login });
       if (!user) {
         return new HttpException(
-          `User with ${id} does not exist`,
+          `User with ${login} does not exist`,
           HttpStatus.BAD_REQUEST,
         );
       }
