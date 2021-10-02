@@ -1,1 +1,1 @@
-npm start
+nest start --watch
