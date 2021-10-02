@@ -31,5 +31,6 @@ export class ProjectsMongoService implements Collection<ProjectContent> {
     await this.projectModel.updateOne(filter, update);
   }
 
-  allDocuments = async () => this.projectModel.find();
+  allDocuments = async (): Promise<ProjectContent[]> =>
+    this.projectModel.find();
 }

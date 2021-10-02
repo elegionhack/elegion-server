@@ -2,6 +2,8 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ProjectsMongoService } from '../mongo-db/projects-mongo.service';
 import { ProjectContent } from '../../models/interfaces/project-content.interface';
 import { UserMongoService } from '../mongo-db/user-mongo.service';
+import { Promise } from 'mongoose';
+import { UserContent } from '../../models/interfaces/user-content.interface';
 
 @Injectable()
 export class ProjectsService {
@@ -11,7 +13,18 @@ export class ProjectsService {
   ) {}
 
   all = async () => {
-    return this.projectCollection.allDocuments();
+    const project = await this.projectCollection.allDocuments();
+    await Promise.all(
+      project.map(async (value, index) => {
+        const k = await Promise.all(
+          value.workers.map(async (id) => {
+            return await this.userCollection.findById(id);
+          }),
+        );
+        project[index].workers = k;
+      }),
+    );
+    return project;
   };
 
   createProject = async (data: ProjectContent) => {
