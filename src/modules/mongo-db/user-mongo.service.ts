@@ -22,9 +22,8 @@ export class UserMongoService implements Collection<UserContent> {
     return undefined;
   }
 
-  findOne(filter: Filter): Promise<UserContent> | null {
-    return undefined;
-  }
+  findOne = async (filter: Filter): Promise<UserContent> | null =>
+    this.userModel.findOne(filter);
 
   save = async (content: UserContent): Promise<void> => {
     await new this.userModel(content).save();

@@ -1,4 +1,5 @@
 import { Role } from '../enums/role.enum';
+import { Status } from '../enums/status.enum';
 
 export interface UserContent {
   login: string;
@@ -6,6 +7,8 @@ export interface UserContent {
   birthday: string;
   position: string;
   fullName: string;
-  roles: Role[];
+  role: Role;
+  status: Status;
   avatarUrl?: string;
+  telegramLink?: string;
 }

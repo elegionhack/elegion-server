@@ -7,7 +7,8 @@ export const UserSchema = new mongoose.Schema({
   birthday: { type: String, require: true },
   position: { type: String, require: true },
   fullName: { type: String, require: true },
-  roles: [{ type: String, require: true }],
+  role: { type: String, require: true },
+  status: { type: String, require: true },
   avatarUrl: { type: String },
 });
 

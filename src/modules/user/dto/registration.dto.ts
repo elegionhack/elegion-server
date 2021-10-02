@@ -4,5 +4,6 @@ export class RegistrationDto {
   birthday: string;
   position: string;
   fullName: string;
+  role: 'legioner' | 'admin';
   avatarUrl?: string;
 }
