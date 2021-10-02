@@ -2,10 +2,14 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ProjectsMongoService } from '../mongo-db/projects-mongo.service';
 import { ProjectContent } from '../../models/interfaces/project-content.interface';
 import { UserContent } from '../../models/interfaces/user-content.interface';
+import { UserMongoService } from '../mongo-db/user-mongo.service';
 
 @Injectable()
 export class ProjectsService {
-  constructor(private projectCollection: ProjectsMongoService) {}
+  constructor(
+    private projectCollection: ProjectsMongoService,
+    private userCollection: UserMongoService,
+  ) {}
 
   all = async () => {
     return this.projectCollection.allDocuments();
@@ -29,5 +33,17 @@ export class ProjectsService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  };
+
+  getProject = async (id: string) => {
+    const project = await this.projectCollection.findById(id);
+    const k = await Promise.all(
+      project.workers.map(async (id) => {
+        return await this.userCollection.findById(id);
+      }),
+    );
+    console.log(k);
+    project.workers = k as unknown as string[];
+    return project;
   };
 }
