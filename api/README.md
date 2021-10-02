@@ -1,37 +1,5 @@
-## Calendar
-
 | Метод | URL  |Описание |
 | ------------- | ------------- | ------------- |
-| GET | calendar | Получить события |
-| POST | user/registration | Регистрация пользователя
 
-### GET `calendar`
-#### Query:
-- days - количество дней
-#### Response:
-```typescript
-  type: 'birthday' | 'corporate';
-  text: string;
-  date: string;
-```
-#### Example:
-- `calendar?days=4` - вернутся события, которые происходят в течение четырёх дней
 
-### POST `user/registration`
-#### Body:
-```typescript
-login: string;
-password: string;
-birthday: string;
-position: string;
-fullName: string;
-avatarUrl?: string;
-```
-#### Example:
-```json
-{
-    "birthday": "1998-11-02T19:00:00.000Z",
-    "position": "Junior разработчик РАП",
-    "fullName": "Иванова Мария Андреевна"
-}
-```
+
