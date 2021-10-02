@@ -8,7 +8,6 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegistrationDto } from './dto/registration.dto';
-import { UserRecord } from '../../infrastructure/user-record.infrastructure';
 import { Cookies } from '../../infrastructure/decorators/cookie.decorator';
 
 @Controller('user')

@@ -20,10 +20,12 @@
 ### POST `user/registration`
 #### Body:
 ```typescript
-avatarUrl?: string;
+login: string;
+password: string;
 birthday: string;
 position: string;
 fullName: string;
+avatarUrl?: string;
 ```
 #### Example:
 ```json
