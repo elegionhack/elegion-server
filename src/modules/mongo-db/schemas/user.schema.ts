@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { UserRecord } from '../../../infrastructure/user-record.infrastructure';
+import { UserContent } from '../../../models/interfaces/user-content.interface';
 
 export const UserSchema = new mongoose.Schema({
   login: { type: String, require: true, unique: true },
@@ -7,7 +7,8 @@ export const UserSchema = new mongoose.Schema({
   birthday: { type: String, require: true },
   position: { type: String, require: true },
   fullName: { type: String, require: true },
+  roles: [{ type: String, require: true }],
   avatarUrl: { type: String },
 });
 
-export type UserDocument = UserRecord & mongoose.Document;
+export type UserDocument = UserContent & mongoose.Document;

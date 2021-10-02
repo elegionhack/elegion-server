@@ -1,7 +1,5 @@
+import { UserContent } from './user-content.interface';
+
 export interface User {
-  avatarUrl?: string;
-  password: string;
-  birthday: string;
-  position: string;
-  fullName: string;
+  content: () => UserContent;
 }

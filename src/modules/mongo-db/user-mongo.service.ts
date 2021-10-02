@@ -3,11 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserDocument } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { Collection } from '../../infrastructure/collection.infrastructure';
-import { UserRecord } from '../../infrastructure/user-record.infrastructure';
 import { Filter } from '../../infrastructure/filter.type';
+import { UserContent } from '../../models/interfaces/user-content.interface';
+import { User } from '../../models/interfaces/user.interface';
 
 @Injectable()
-export class UserMongoService implements Collection<UserRecord> {
+export class UserMongoService implements Collection<UserContent> {
   constructor(
     @InjectModel('User')
     private userModel: Model<UserDocument>,
@@ -17,19 +18,19 @@ export class UserMongoService implements Collection<UserRecord> {
     return Promise.resolve(undefined);
   }
 
-  findById(id: string): Promise<UserRecord> | null {
+  findById(id: string): Promise<UserContent> | null {
     return undefined;
   }
 
-  findOne(filter: Filter): Promise<UserRecord> | null {
+  findOne(filter: Filter): Promise<UserContent> | null {
     return undefined;
   }
 
-  save = async (content: UserRecord): Promise<void> => {
+  save = async (content: UserContent): Promise<void> => {
     await new this.userModel(content).save();
   };
 
-  updateOne(filter: Filter, update: UserRecord): Promise<void> {
+  updateOne(filter: Filter, update: UserContent): Promise<void> {
     return Promise.resolve(undefined);
   }
 }

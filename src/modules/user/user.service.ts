@@ -1,13 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Registration } from './types/registration.type';
 import { UserMongoService } from '../mongo-db/user-mongo.service';
 import * as bcrypt from 'bcrypt';
+import { UserContent } from '../../models/interfaces/user-content.interface';
 
 @Injectable()
 export class UserService {
   constructor(private userCollection: UserMongoService) {}
 
-  registerUser = async (data: Registration) => {
+  registerUser = async (data: UserContent) => {
     try {
       const hashedPassword = await bcrypt.hash(
         data.password,
