@@ -1,1 +1,1 @@
-web: nest start --watch
+web: npm start
