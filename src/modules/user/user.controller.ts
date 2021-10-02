@@ -11,7 +11,6 @@ import { UserService } from './user.service';
 import { RegistrationDto } from './dto/registration.dto';
 import { Cookies } from '../../infrastructure/decorators/cookie.decorator';
 import { Role } from '../../models/enums/role.enum';
-import { CookiesGuard } from '../../infrastructure/cookies.guard';
 
 @Controller('user')
 export class UserController {
