@@ -37,8 +37,13 @@ export class UserController {
     return await this.userService.getUserContent(login, password);
   }
 
-  @Get(':login')
+  @Get('login/:login')
   async getByAdmin(@Param('login') login) {
     return await this.userService.getUserContentByAdmin(login);
+  }
+
+  @Get('id/:id')
+  async getByAdminById(@Param('id') id) {
+    return await this.userService.getUserContentByAdminById(id);
   }
 }

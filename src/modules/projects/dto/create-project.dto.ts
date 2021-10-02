@@ -8,4 +8,5 @@ export class CreateProjectDto {
   trackerLink: string;
   googleCalendarLink: string;
   telegramLink: string;
+  photo: string;
 }

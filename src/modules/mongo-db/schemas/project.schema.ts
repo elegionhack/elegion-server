@@ -9,6 +9,7 @@ export const ProjectSchema = new mongoose.Schema({
   trackerLink: { type: String },
   googleCalendarLink: { type: String },
   telegramLink: { type: String },
+  photo: { type: String },
 });
 
 export type ProjectDocument = ProjectContent & mongoose.Document;
