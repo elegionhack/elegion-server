@@ -5,6 +5,8 @@ import { UserMongoService } from './user-mongo.service';
 import { UserSchema } from './schemas/user.schema';
 import { ProjectSchema } from './schemas/project.schema';
 import { ProjectsMongoService } from './projects-mongo.service';
+import { EventSchema } from './schemas/event.schema';
+import { EventsMongoService } from './events-mongo.service';
 
 @Module({
   imports: [
@@ -13,9 +15,10 @@ import { ProjectsMongoService } from './projects-mongo.service';
     MongooseModule.forFeature([
       { name: 'User', schema: UserSchema },
       { name: 'Project', schema: ProjectSchema },
+      { name: 'Event', schema: EventSchema },
     ]),
   ],
-  providers: [UserMongoService, ProjectsMongoService],
-  exports: [UserMongoService, ProjectsMongoService],
+  providers: [UserMongoService, ProjectsMongoService, EventsMongoService],
+  exports: [UserMongoService, ProjectsMongoService, EventsMongoService],
 })
 export class MongoDbModule {}
