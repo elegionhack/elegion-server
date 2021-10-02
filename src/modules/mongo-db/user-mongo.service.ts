@@ -18,8 +18,17 @@ export class UserMongoService implements Collection<UserContent> {
     return Promise.resolve(undefined);
   }
 
-  findById = async (id: string): Promise<UserContent> | null =>
-    await this.findOne({ _id: id });
+  findById = async (id: string): Promise<UserContent> | null => {
+    try {
+      const f = await this.findOne({ _id: id });
+      if (!f) {
+        return null;
+      }
+      return f;
+    } catch (e) {
+      return null;
+    }
+  };
 
   findOne = async (filter: Filter): Promise<UserContent> | null =>
     await this.userModel.findOne(filter);
@@ -28,8 +37,8 @@ export class UserMongoService implements Collection<UserContent> {
     await new this.userModel(content).save();
   };
 
-  updateOne(filter: Filter, update: UserContent): Promise<void> {
-    return Promise.resolve(undefined);
+  async updateOne(filter: Filter, update: UserContent): Promise<void> {
+    await this.userModel.updateOne(filter, update);
   }
 
   allDocuments = async () => this.userModel.find();

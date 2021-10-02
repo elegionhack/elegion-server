@@ -10,6 +10,8 @@ export const UserSchema = new mongoose.Schema({
   role: { type: String, require: true },
   status: { type: String, require: true },
   avatarUrl: { type: String },
+  bonuses: { type: Number },
+  frozenBonuses: { type: Number },
 });
 
 export type UserDocument = UserContent & mongoose.Document;
