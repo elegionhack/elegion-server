@@ -4,6 +4,7 @@ import { CalendarModule } from './modules/calendar/calendar.module';
 import { UserModule } from './modules/user/user.module';
 import { ProjectsModule } from './modules/projects/projects.module';
 import { EventsModule } from './modules/events/events.module';
+import { CommonModule } from './modules/common/common.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { EventsModule } from './modules/events/events.module';
     UserModule,
     ProjectsModule,
     EventsModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
