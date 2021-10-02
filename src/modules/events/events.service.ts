@@ -23,6 +23,9 @@ export class EventsService {
     try {
       const event = await this.eventCollection.findById(eventId);
       event.participantsList.push(userId as unknown as UserContent);
+      const user = await this.userCollection.findById(userId);
+      user.frozenBonuses += event.bonus;
+      await this.userCollection.updateOne({ _id: userId }, user);
       await this.eventCollection.updateOne({ _id: eventId }, event);
     } catch (e) {
       return new HttpException(

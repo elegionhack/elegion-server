@@ -28,8 +28,8 @@ export class UserMongoService implements Collection<UserContent> {
     await new this.userModel(content).save();
   };
 
-  updateOne(filter: Filter, update: UserContent): Promise<void> {
-    return Promise.resolve(undefined);
+  async updateOne(filter: Filter, update: UserContent): Promise<void> {
+    await this.userModel.updateOne(filter, update);
   }
 
   allDocuments = async () => this.userModel.find();

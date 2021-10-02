@@ -9,6 +9,8 @@ export interface UserContent {
   fullName: string;
   role: Role;
   status: Status;
+  bonuses: number;
+  frozenBonuses: number;
   avatarUrl?: string;
   telegramLink?: string;
 }

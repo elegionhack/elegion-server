@@ -63,10 +63,17 @@ export class UserService {
     }
   };
 
-  registerUser = async (data: UserContent) => {
+  registerUser = async (
+    data: Omit<UserContent, 'bonuses' | 'frozenBonuses'>,
+  ) => {
     try {
       const hashedPassword = await this.#hashPassword(data.password);
-      await this.userCollection.save({ ...data, password: hashedPassword });
+      await this.userCollection.save({
+        ...data,
+        password: hashedPassword,
+        bonuses: 0,
+        frozenBonuses: 0,
+      });
     } catch (e) {
       return new HttpException(
         'Internal error',
