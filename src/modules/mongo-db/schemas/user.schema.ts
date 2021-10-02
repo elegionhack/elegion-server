@@ -12,6 +12,7 @@ export const UserSchema = new mongoose.Schema({
   avatarUrl: { type: String },
   bonuses: { type: Number },
   frozenBonuses: { type: Number },
+  projectLinks: [String],
 });
 
 export type UserDocument = UserContent & mongoose.Document;

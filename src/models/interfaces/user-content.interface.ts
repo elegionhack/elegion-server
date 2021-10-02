@@ -11,6 +11,7 @@ export interface UserContent {
   status: Status;
   bonuses: number;
   frozenBonuses: number;
+  projectLinks: string[];
   avatarUrl?: string;
   telegramLink?: string;
 }

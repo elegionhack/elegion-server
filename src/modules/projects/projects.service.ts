@@ -35,6 +35,11 @@ export class ProjectsService {
     try {
       const project = await this.projectCollection.findById(projectId);
       project.workers.push(...workers);
+      for (const id of workers) {
+        const worker = await this.userCollection.findById(id);
+        worker.projectLinks.push(projectId);
+        await this.userCollection.updateOne({ _id: id }, worker);
+      }
       await this.projectCollection.updateOne({ _id: projectId }, project);
     } catch (e) {
       return new HttpException(
