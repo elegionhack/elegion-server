@@ -1,1 +1,1 @@
-nest start --watch
+web: nest start --watch
