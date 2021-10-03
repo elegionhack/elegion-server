@@ -14,17 +14,16 @@ export class ProjectsService {
 
   all = async () => {
     const project = await this.projectCollection.allDocuments();
-    await Promise.all(
-      project.map(async (value, index) => {
-        const k = await Promise.all(
-          value.workers.map(async (id) => {
-            return await this.userCollection.findById(id);
-          }),
-        );
-        project[index].workers = k;
-      }),
-    );
-    return project;
+    const res = [];
+    for (const d in project) {
+      const k = await Promise.all(
+        project[d].workers.map(async (id) => {
+          return await this.userCollection.findById(id);
+        }),
+      );
+      res.push({ ...project[d]['_doc'], workers: k });
+    }
+    return res;
   };
 
   createProject = async (data: ProjectContent) => {
