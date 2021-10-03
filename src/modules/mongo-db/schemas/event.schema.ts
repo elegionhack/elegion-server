@@ -8,6 +8,7 @@ export const EventSchema = new mongoose.Schema({
   description: { type: String },
   participantsList: [String],
   imgUrl: { type: String },
+  date: { type: String },
 });
 
 export type EventDocument = EventContent & mongoose.Document;

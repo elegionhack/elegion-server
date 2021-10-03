@@ -5,6 +5,7 @@ export interface EventContent {
   title: string;
   bonus: number;
   description: string;
+  date: string;
   participantsList: UserContent[];
   imgUrl?: string;
 }
