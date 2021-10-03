@@ -13,6 +13,7 @@ export const UserSchema = new mongoose.Schema({
   bonuses: { type: Number },
   frozenBonuses: { type: Number },
   projectLinks: [String],
+  telegramLink: { type: String },
 });
 
 export type UserDocument = UserContent & mongoose.Document;
